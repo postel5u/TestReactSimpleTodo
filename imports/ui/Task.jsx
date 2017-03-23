@@ -32,11 +32,13 @@ export default class Task extends Component {
         dateFormat.masks.hammerTime = 'HH:MM ';
         const date = dateFormat(this.props.task.createdAt, "hammerTime");
         return (
-            <li>
+            <li className="list-group-item">
+                <span className="pull-right">
                     <button className={owner? "delete" : "delete hide"}
                     onClick={this.deleteThisTask.bind(this)}
                     > &times;
                     </button>
+                </span>
 
 
                         <i id={this.props.task._id}

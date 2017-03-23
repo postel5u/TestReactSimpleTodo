@@ -259,3 +259,7 @@ header .hide-completed {
 
 }*/
 
+.panel-chat {
+  max-height: 500px;
+  overflow-y: scroll;
+}

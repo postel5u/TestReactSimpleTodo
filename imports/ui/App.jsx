@@ -8,6 +8,7 @@ import { Users } from '../api/users.js';
 import User from './User.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Meteor } from 'meteor/meteor';
+import {Grid, Row, Navbar, Col, Container, NavItem, Nav, Carousel} from 'react-bootstrap';
 
 // App component - represents the whole app
 class App extends Component {
@@ -81,34 +82,47 @@ class App extends Component {
     render() {
         return (
             <div className="container">
-                <div className="block">
-                <header>
-                    <h1>Chat !!</h1>
-                    <AccountsUIWrapper />
-                </header>
-
-                <ul>
-                  {this.renderTasks()}
-                </ul>
-
-                { this.props.currentUser ?
-                    <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                        <input
-                            type="text"
-                            ref="textInput"
-                            placeholder="Entrer un message"
-                        />
-                    </form> :''
-                }
+              <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                  <div className="panel panel-default">
+                    <div className="panel-heading">
+                      <h3 className="panel-title">Chat !!</h3>
+                    </div>
+                    <div className="panel-body panel-chat">
+                      <ul className="list-group">
+                        {this.renderTasks()}
+                        { this.props.currentUser ?
+                          <li className="list-group-item">
+                          <form className="form-group" onSubmit={this.handleSubmit.bind(this)} >
+                          <div className="input-group">
+                          <span className="input-group-addon">New message</span>
+                          <input
+                          className="form-control"
+                          type="text"
+                          ref="textInput"
+                          placeholder="Entrer un message"
+                          />
+                          </div>
+                          </form></li> :''
+                        }
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="block">
-                    <header>
-                        <h1>User list !!</h1>
-                    </header>
-                    <ul>
+                <div className="col-md-3">
+                  <div className="panel panel-default">
+                    <div className="panel-heading">
+                      <h3 className="panel-title">User list !!</h3>
+                    </div>
+                    <div className="panel-body">
+                      <ul className="list-group">
                         {this.renderUsers()}
-                    </ul>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
         );
     }
