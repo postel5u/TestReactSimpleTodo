@@ -60,7 +60,7 @@ class App extends Component {
         return (
             <div className="container">
                 <header>
-                    <h1>Chat !</h1>
+                    <h1>Chat !!</h1>
                     <AccountsUIWrapper />
                 </header>
 
