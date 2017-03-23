@@ -57,6 +57,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/dombackend.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/view.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/exceptions.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/fortawesome_fontawesome/4.7.0/web.browser/upstream/css/font-awesome.css" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp-hashing/1.0.9/web.browser/webapp-hashing.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/attrs.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/materializer.js" />
@@ -233,6 +234,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/dombackend.js" />
       <root url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/view.js" />
       <root url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/exceptions.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/fortawesome_fontawesome/4.7.0/web.browser/upstream/css/font-awesome.css" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp-hashing/1.0.9/web.browser/webapp-hashing.js" />
       <root url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/attrs.js" />
       <root url="file://$USER_HOME$/.meteor/packages/blaze/2.3.0/web.browser/materializer.js" />
