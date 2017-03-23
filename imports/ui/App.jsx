@@ -81,6 +81,7 @@ class App extends Component {
     render() {
         return (
             <div className="container">
+                <div className="block">
                 <header>
                     <h1>Chat !!</h1>
                     <AccountsUIWrapper />
@@ -89,10 +90,7 @@ class App extends Component {
                 <ul>
                   {this.renderTasks()}
                 </ul>
-                <h1>Users :</h1>
-                <ul>
-                  {this.renderUsers()}
-                </ul>
+
                 { this.props.currentUser ?
                     <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
                         <input
@@ -102,6 +100,15 @@ class App extends Component {
                         />
                     </form> :''
                 }
+                </div>
+                <div className="block">
+                    <header>
+                        <h1>User list !!</h1>
+                    </header>
+                    <ul>
+                        {this.renderUsers()}
+                    </ul>
+                </div>
             </div>
         );
     }

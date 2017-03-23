@@ -258,3 +258,8 @@ i:hover{
     display : none;
 }
 
+.block{
+    display: inline-block;
+    width: 50%;
+}
+
