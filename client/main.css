@@ -1,5 +1,5 @@
 /* CSS declarations go here */
-body {
+/**body {
 
     font-family: sans-serif;
 
@@ -33,6 +33,15 @@ body {
 
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
 
 
 .container {
@@ -247,4 +256,4 @@ header .hide-completed {
 
     }
 
-}
+}*/
