@@ -2,8 +2,22 @@ import React, { Component, PropTypes } from 'react';
 import { Tasks } from '../api/tasks.js';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+import ReactDOM from 'react-dom';
 // Task component - represents a single todo item
 export default class Task extends Component {
+
+    scrollToBottom(){
+      const node = ReactDOM.findDOMNode(this.messagesEnd);
+      node.scrollIntoView({behavior: "smooth"});
+    }
+
+    componentDidMount() {
+      this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+      this.scrollToBottom();
+    }
 
     toggleChecked() {
         // Set the checked property to the opposite of its current value
@@ -34,10 +48,10 @@ export default class Task extends Component {
         return (
             <li className="list-group-item">
                 <span className="pull-right">
-                    <button className={owner? "delete" : "delete hide"}
+                    <span className={owner? "delete" : "delete hide"}
                     onClick={this.deleteThisTask.bind(this)}
                     > &times;
-                    </button>
+                    </span>
                 </span>
 
 
@@ -48,7 +62,7 @@ export default class Task extends Component {
                         > </i>
 
                 <label>{this.props.task.reported}</label>
-                <label> ({date})</label>
+                <label>({date})</label>
 
 
 
@@ -56,6 +70,7 @@ export default class Task extends Component {
                 <span className="text">
                  <strong>{this.props.task.username}</strong>: {this.props.task.text}
                 </span>
+                <div style={ {float:"left", clear: "both"} } ref={(el) => { this.messagesEnd = el; }}></div>
             </li>
         );
     }

@@ -8,7 +8,7 @@ export default class User extends Component {
     return (
       <li className="list-group-item">
         <span className="text">
-          <strong>{this.props.user.username}</strong>
+          <strong>{this.props.user.profile.id}</strong>
         </span>
       </li>
     );

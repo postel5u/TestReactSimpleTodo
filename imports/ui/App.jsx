@@ -87,7 +87,8 @@ class App extends Component {
                 <div className="col-md-6">
                   <div className="panel panel-default">
                     <div className="panel-heading">
-                      <h3 className="panel-title">Chat !!</h3>
+                      <h3 className="panel-title">Chat !! <div className="pull-right"><AccountsUIWrapper/></div></h3>
+
                     </div>
                     <div className="panel-body panel-chat">
                       <ul className="list-group">
