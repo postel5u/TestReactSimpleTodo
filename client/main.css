@@ -248,3 +248,12 @@ header .hide-completed {
     }
 
 }
+
+i:hover{
+    cursor: pointer;
+
+}
+
+.hide{
+    display : none;
+}
