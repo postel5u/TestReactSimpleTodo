@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.jsx';
+import { Users } from '../api/users.js';
+import User from './User.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Meteor } from 'meteor/meteor';
 
@@ -13,7 +15,14 @@ class App extends Component {
         super(props);
         this.state = {
             hideCompleted: false,
+            subscribtion : {
+              users: Meteor.subscribe('allUsers')
+            }
         };
+    }
+
+    componentWillUnMount(){
+      this.state.subscribtion.users.stop();
     }
 
     handleSubmit(event) {
@@ -56,6 +65,19 @@ class App extends Component {
         });
     }
 
+    renderUsers(){
+      let users = this.props.users;
+      //console.log(users);
+      return users.map((user)=>{
+        return (
+          <User
+            key={user._id}
+            user={user}
+          />
+        );
+      });
+    }
+
     render() {
         return (
             <div className="container">
@@ -85,8 +107,11 @@ class App extends Component {
                 </header>
 
                 <ul>
-
-                    {this.renderTasks()}
+                  {this.renderTasks()}
+                </ul>
+                <h1>Users :</h1>
+                <ul>
+                  {this.renderUsers()}
                 </ul>
             </div>
         );
@@ -107,6 +132,7 @@ export default createContainer(() => {
         tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
         incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
         currentUser: Meteor.user(),
+        users: Meteor.users.find({}).fetch(),
     };
 
 }, App);
