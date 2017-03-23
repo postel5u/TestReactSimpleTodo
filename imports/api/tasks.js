@@ -32,7 +32,7 @@ Meteor.methods({
             text,
             createdAt: new Date(),
             owner: Meteor.userId(),
-            username: Meteor.user().username,
+            username: Meteor.user().profile.id,
             reported : 0,
             reportedBy : new Array(),
         });
@@ -56,8 +56,7 @@ Meteor.methods({
                 Tasks.remove(taskId)
             }else{
                 task.reported++;
-                console.log(Meteor.userId());
-                console.log(task.reportedBy);
+
                 Tasks.update(taskId,{ $set: {reported : task.reported}});
                 Tasks.update(taskId,  {$push: {reportedBy : user}});
                 console.log(taskId);

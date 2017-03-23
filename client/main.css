@@ -259,3 +259,35 @@ header .hide-completed {
 
 }*/
 
+.panel-chat {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+label {
+  margin: 0 1%;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+
+.or {
+  display: none;
+}
+
+.additional-link-container {
+  display: none;
+}
+
+#login-email-label-and-input {
+  display: none;
+}
+
+#login-password-label-and-input{
+  display: none;
+}
+
+#login-buttons-password{
+  display: none;
+}
