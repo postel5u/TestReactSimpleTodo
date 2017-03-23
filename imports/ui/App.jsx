@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.jsx';
+import { Users } from '../api/users.js';
+import User from './User.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Meteor } from 'meteor/meteor';
 
@@ -13,7 +15,14 @@ class App extends Component {
         super(props);
         this.state = {
             hideCompleted: false,
+            subscribtion : {
+              users: Meteor.subscribe('allUsers')
+            }
         };
+    }
+
+    componentWillUnMount(){
+      this.state.subscribtion.users.stop();
     }
 
     handleSubmit(event) {
@@ -56,38 +65,50 @@ class App extends Component {
         });
     }
 
+    renderUsers(){
+      let users = this.props.users;
+      //console.log(users);
+      return users.map((user)=>{
+        return (
+          <User
+            key={user._id}
+            user={user}
+          />
+        );
+      });
+    }
+
     render() {
         return (
             <div className="container">
+                <div className="block">
                 <header>
-                    <h1>Todo List ({this.props.incompleteCount})</h1>
+                    <h1>Chat !!</h1>
                     <AccountsUIWrapper />
-                    { this.props.currentUser ?
-                        <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                            <input
-                                type="text"
-                                ref="textInput"
-                                placeholder="Type to add new tasks"
-                            />
-                        </form> :''
-                    }
-                    <label className="hide-completed">
-                        <input
-                            type="checkbox"
-                            readOnly
-                            checked={this.state.hideCompleted}
-                            onClick={this.toggleHideCompleted.bind(this)}
-                        />
-                        Hide Completed Tasks
-                    </label>
-
-
                 </header>
 
                 <ul>
-
-                    {this.renderTasks()}
+                  {this.renderTasks()}
                 </ul>
+
+                { this.props.currentUser ?
+                    <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                        <input
+                            type="text"
+                            ref="textInput"
+                            placeholder="Entrer un message"
+                        />
+                    </form> :''
+                }
+                </div>
+                <div className="block">
+                    <header>
+                        <h1>User list !!</h1>
+                    </header>
+                    <ul>
+                        {this.renderUsers()}
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -104,9 +125,24 @@ App.propTypes = {
 export default createContainer(() => {
     Meteor.subscribe('tasks');
     return {
-        tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+        tasks: Tasks.find({}).fetch(),
         incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
         currentUser: Meteor.user(),
+        users: Meteor.users.find({}).fetch(),
     };
 
 }, App);
+
+
+//Hidecompleted
+/*
+ <label className="hide-completed">
+ <input
+ type="checkbox"
+ readOnly
+ checked={this.state.hideCompleted}
+ onClick={this.toggleHideCompleted.bind(this)}
+ />
+ Hide Completed Tasks
+ </label>
+ */
