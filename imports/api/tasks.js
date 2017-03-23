@@ -34,7 +34,7 @@ Meteor.methods({
             owner: Meteor.userId(),
             username: Meteor.user().username,
             reported : 0,
-            reportedBy
+            reportedBy : new Array(),
         });
     },
     'tasks.remove'(taskId) {
@@ -49,17 +49,22 @@ Meteor.methods({
     'tasks.report'(taskId) {
         check(taskId, String);
         const task = Tasks.findOne(taskId);
-        task.reported++;
-        if(task.reported >= 10) {
-            Tasks.remove(taskId)
-        }else{
-            Tasks.update(taskId, { $set: {reported : task.reported}});
+        const user = Meteor.userId();
+
+        if(task.reportedBy.includes(user)==false){
+            if(task.reported >= 10) {
+                Tasks.remove(taskId)
+            }else{
+                task.reported++;
+                console.log(Meteor.userId());
+                console.log(task.reportedBy);
+                Tasks.update(taskId,{ $set: {reported : task.reported}});
+                Tasks.update(taskId,  {$push: {reportedBy : user}});
+                console.log(taskId);
+
+                document.getElementById(taskId).className= "fa fa-thumbs-down"
+            }
         }
-    },
-    'task.hide'(taskId) {
-        const task = Tasks.findOne(taskId);
-        task.reported++;
-        Tasks.update(taskId, {$set: {text: "contenu inaproprié."}});
     },
     'tasks.setPrivate'(taskId, setToPrivate) {
         check(taskId, String);
